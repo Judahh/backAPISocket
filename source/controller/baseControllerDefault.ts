@@ -10,7 +10,7 @@ import { settings } from 'ts-mixer';
 import RouterInitializer from '../router/routerInitializer';
 settings.initFunction = 'init';
 export default class BaseControllerDefault extends Default {
-  protected socket;
+  protected server;
   protected regularErrorStatus: {
     [error: string]: number;
   } = {
@@ -42,7 +42,11 @@ export default class BaseControllerDefault extends Default {
   protected handler: Handler | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected middlewares?: any[];
-  async mainRequestHandler(data, socket): Promise<Response> {
+  async mainRequestHandler(
+    data,
+    socket,
+    operation: Operation
+  ): Promise<Response> {
     try {
       let response;
       if (
@@ -57,7 +61,7 @@ export default class BaseControllerDefault extends Default {
       }
       return response;
     } catch (error) {
-      return new Promise(() => this.generateError(socket, error));
+      return new Promise(() => this.generateError(socket, error, operation));
     }
   }
 
@@ -121,7 +125,7 @@ export default class BaseControllerDefault extends Default {
     this.setName(this.getClassName().replace('Controller', this.getType()));
   }
 
-  protected generateError(socket, error) {
+  protected generateError(socket, error, operation: Operation) {
     let status;
     let object;
     if ((error.message as string).includes('does not exist'))
@@ -133,7 +137,12 @@ export default class BaseControllerDefault extends Default {
       status = this.errorStatus(error.name) as number;
       object = { error: error.message };
     }
-    socket.emit({ status, object });
+    const returnName =
+      this.formatName().charAt(0).toLowerCase() +
+      this.formatName().slice(1) +
+      '.' +
+      Operation[operation];
+    socket.emit(returnName, { status, object });
   }
 
   protected hasObjectName() {
@@ -255,10 +264,15 @@ export default class BaseControllerDefault extends Default {
       await this.runMiddlewares(data, socket);
       const object = await this.generateObject(useFunction, event);
       const status = this.generateStatus(operation, object);
-      socket.emit({ status, object });
+      const returnName =
+        this.formatName().charAt(0).toLowerCase() +
+        this.formatName().slice(1) +
+        '.' +
+        Operation[operation];
+      socket.emit(returnName, { status, object });
       return socket;
     } catch (error) {
-      this.generateError(socket, error);
+      this.generateError(socket, error, operation);
       return socket;
     }
   }
