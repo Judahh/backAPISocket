@@ -1,6 +1,8 @@
 class MockSocket {
   received = {};
-  emit(object): MockSocket {
+  name = '';
+  emit(name, object): MockSocket {
+    this.name = name;
     this.received = object;
     return this;
   }
