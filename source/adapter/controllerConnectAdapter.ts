@@ -1,4 +1,4 @@
 /* eslint-disable no-unused-vars */
 export default interface ControllerConnectAdapter {
-  connect(data, socket): Promise<Response>;
+  connect(server, data, socket): Promise<Response>;
 }
