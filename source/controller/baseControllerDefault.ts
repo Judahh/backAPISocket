@@ -7,7 +7,7 @@ import { Default } from '@flexiblepersistence/default-initializer';
 import { ServiceModel, ServiceSimpleModel } from '@flexiblepersistence/service';
 import { Handler, Event, Operation } from 'flexiblepersistence';
 import { settings } from 'ts-mixer';
-import RouterInitializer from '../router/routerInitializer';
+import { RouterInitializer } from 'backapi';
 settings.initFunction = 'init';
 export default class BaseControllerDefault extends Default {
   protected server;
