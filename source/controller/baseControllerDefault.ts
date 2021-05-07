@@ -260,8 +260,8 @@ export default class BaseControllerDefault extends Default {
     singleDefault?: boolean
   ): Promise<any> {
     try {
-      const event = this.formatEvent(data, operation, singleDefault);
       await this.runMiddlewares(data, socket);
+      const event = this.formatEvent(data, operation, singleDefault);
       const object = await this.generateObject(useFunction, event);
       const status = this.generateStatus(operation, object);
       const returnName =
