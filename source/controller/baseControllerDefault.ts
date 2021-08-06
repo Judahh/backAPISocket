@@ -201,6 +201,17 @@ export default class BaseControllerDefault extends Default {
     // deepcode ignore HTTPSourceWithUncheckedType: <please specify a reason of ignoring this>, deepcode ignore HTTPSourceWithUncheckedType: <please specify a reason of ignoring this>
     if (params && params.filter) selection = params.filter;
     else selection = query as any;
+    for (const key in selection) {
+      if (Object.prototype.hasOwnProperty.call(selection, key)) {
+        const element = selection[key];
+        const newKey = key.split(/[\s,"'=;\-\/\\]+/)[0];
+        selection[newKey] = element;
+        if (key != newKey) {
+          selection[key] = undefined;
+          delete selection[key];
+        }
+      }
+    }
     return selection;
   }
 
