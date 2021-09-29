@@ -6,24 +6,25 @@ import DBHandler from './dBHandler';
 import TestController from './testController';
 import { Test } from './test.class';
 import { mockSocket } from './socket.mock';
-import { DAODB, Utils } from '@flexiblepersistence/dao';
+import { DAOPersistence, Utils } from '@flexiblepersistence/dao';
 
 test('store test, update, select all, select by id test and delete it', async (done) => {
-  const pool = ((DBHandler.getReadHandler() as ServiceHandler)
-    .persistence as DAODB).getPool();
+  const pool = (
+    (DBHandler.getReadHandler() as ServiceHandler).persistence as DAOPersistence
+  ).getPool();
   await Utils.init(pool);
   const handler = DBHandler.getHandler();
   const controller = new TestController(DBHandler.getInit());
   try {
-    await handler.getWrite().clear();
+    await handler?.getWrite()?.clear();
 
     const sentTest = new Test();
     const sentTest2 = new Test();
 
     const store = await controller.store(
-      ({
+      {
         body: sentTest,
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
     // console.log('store:', store);
@@ -37,9 +38,9 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(storedTest).toStrictEqual(expectedTest);
 
     const index = await controller.index(
-      ({
+      {
         params: { filter: {} },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
     // console.log('show:', show);
@@ -47,9 +48,9 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(indexTest).toStrictEqual(expectedTest);
 
     const store2 = await controller.store(
-      ({
+      {
         body: sentTest2,
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
     // console.log('store:', store);
@@ -63,9 +64,9 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(storedTest2).toStrictEqual(expectedTest2);
 
     const show = await controller.show(
-      ({
+      {
         params: { filter: {} },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
 
@@ -77,13 +78,13 @@ test('store test, update, select all, select by id test and delete it', async (d
     const sentTest3 = { name: 'Test' };
 
     const update = await controller.update(
-      ({
+      {
         body: sentTest3,
         params: {
           filter: { id: storedTest2.id },
           single: false,
         },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
     // console.log('storedTest2:', storedTest2);
@@ -95,9 +96,9 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(updatedTest).toStrictEqual(expectedUpdatedTest);
 
     const show2 = await controller.show(
-      ({
+      {
         params: { filter: {} },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
 
@@ -109,11 +110,11 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(showTest2).toStrictEqual(expectedTests2);
 
     const deleted = await controller.delete(
-      ({
+      {
         params: {
           filter: { id: storedTest2.id },
         },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
 
@@ -124,9 +125,9 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(deletedTest).toStrictEqual(expectedDeletedTest);
 
     const show3 = await controller.show(
-      ({
+      {
         params: { filter: {} },
-      } as unknown) as Request,
+      } as unknown as Request,
       mockSocket
     );
 
@@ -136,12 +137,12 @@ test('store test, update, select all, select by id test and delete it', async (d
     expect(showTest3).toStrictEqual(expectedTests3);
   } catch (error) {
     console.error(error);
-    await handler.getWrite().clear();
+    await handler?.getWrite()?.clear();
     await Utils.end(pool);
     expect(error).toBe(null);
     done();
   }
-  await handler.getWrite().clear();
+  await handler?.getWrite()?.clear();
   await Utils.end(pool);
   done();
 });
