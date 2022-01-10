@@ -1731,6 +1731,12 @@ flexiblepersistence@latest:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.0.1.tgz#4dcb73c2269923b9d05fb94b26ad95da71a7e775"
   integrity sha512-focLBSIboOx32YkvPxMed37cheON0WoQyVP0XB8pGS3meywsLqPY3QplRY4+uXAuwl/QhRGkvLGOW8Yb40tjhg==
+  dependencies:
+    "@flexiblepersistence/default-initializer" "latest"
+    journaly "latest"
+    mongodb "latest"
+    mongoose "latest"
+    pg "latest"
 
 form-data@^3.0.0:
   version "3.0.1"
