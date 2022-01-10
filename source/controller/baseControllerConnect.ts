@@ -1,20 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import BaseControllerDefault from './baseControllerDefault';
-import ControllerConnectAdapter from '../adapter/controllerConnectAdapter';
-import { Operation } from 'flexiblepersistence';
+import { Mixin } from 'ts-mixer';
+import { AbstractControllerConnect, IControllerConnect } from 'backapi';
 
-// @ts-ignore
 export default class BaseControllerConnect
-  extends BaseControllerDefault
-  implements ControllerConnectAdapter {
-  async connect(server, data, socket): Promise<Response> {
-    this.server = server;
-    return this.generateEvent(
-      data,
-      socket,
-      Operation.other,
-      this.event.bind(this)
-    );
-  }
-}
+  extends Mixin(BaseControllerDefault, AbstractControllerConnect)
+  implements IControllerConnect {}

@@ -1,18 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import BaseControllerDefault from './baseControllerDefault';
-import { Operation } from 'flexiblepersistence';
-import ControllerHeadAdapter from '../adapter/controllerHeadAdapter';
+import { Mixin } from 'ts-mixer';
+import { AbstractControllerHead, IControllerHead } from 'backapi';
 
-// @ts-ignore
 export default class BaseControllerHead
-  extends BaseControllerDefault
-  implements ControllerHeadAdapter {
-  async head(data, socket): Promise<Response> {
-    return this.generateEvent(
-      data,
-      socket,
-      Operation.other,
-      this.event.bind(this)
-    );
-  }
-}
+  extends Mixin(BaseControllerDefault, AbstractControllerHead)
+  implements IControllerHead {}
