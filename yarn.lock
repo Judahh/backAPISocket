@@ -991,9 +991,9 @@ babel-preset-jest@^27.4.0:
     babel-preset-current-node-syntax "^1.0.0"
 
 backapi@latest:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/backapi/-/backapi-2.0.4.tgz#ce674281ab81ad4c7a98dd3d89fba9c1d2f12024"
-  integrity sha512-OTSWTxznQi/i4l4C85/j1iUyS6q8P63NF6yJ5ZE6lvYb9k1lqF5jYnoIgqmiBXakdj50G50I/eTz8UGt8J+qMg==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/backapi/-/backapi-2.0.5.tgz#a43198ac8fe041d96fcbb007b42d4c81a6683fd9"
+  integrity sha512-mks9015IvYfSVBq87Gv+LE6AW2GWwn84qVaI+kdxz3/BZXMh2WVR9pLPYvUByv0/bD2DOOldTc0wD86mis5+LQ==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
@@ -1732,11 +1732,11 @@ flexiblepersistence@latest:
   resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.0.1.tgz#4dcb73c2269923b9d05fb94b26ad95da71a7e775"
   integrity sha512-focLBSIboOx32YkvPxMed37cheON0WoQyVP0XB8pGS3meywsLqPY3QplRY4+uXAuwl/QhRGkvLGOW8Yb40tjhg==
   dependencies:
-    "@flexiblepersistence/default-initializer" "latest"
-    journaly "latest"
-    mongodb "latest"
-    mongoose "latest"
-    pg "latest"
+    "@flexiblepersistence/default-initializer" latest
+    journaly latest
+    mongodb latest
+    mongoose latest
+    pg latest
 
 form-data@^3.0.0:
   version "3.0.1"
