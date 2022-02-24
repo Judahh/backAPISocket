@@ -49,7 +49,7 @@
     "@flexiblepersistence/service": "latest",
     "pg": "latest",
     "backapi": "latest",
-    "flexiblepersistence": "latest",
+    "flexiblepersistence": "3.0.7",
     "journaly": "latest",
     "ts-mixer": "latest"
   },
