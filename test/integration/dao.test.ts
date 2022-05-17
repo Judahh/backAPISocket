@@ -14,8 +14,8 @@ import TestDAO from './testDAO';
 import { DatabaseHandler } from 'backapi';
 let read;
 let write;
-let handler: Handler;
-let dbHandler: DatabaseHandler;
+let handler;
+let dbHandler;
 let journaly;
 describe('1', () => {
   beforeEach(async () => {
@@ -92,6 +92,9 @@ describe('1', () => {
     // console.log('storedTest:', storedTest);
 
     sentTest.id = storedTest.id;
+    // console.log('sentTest:', sentTest);
+    // console.log('t storedTest:', typeof storedTest);
+    // console.log('storedTest.id:', storedTest.id);
     const expectedTest = { id: storedTest.id, name: null };
     // console.log('expectedTest:', expectedTest);
 

@@ -15,8 +15,8 @@ import TestDAO from './testDAO';
 import { DatabaseHandler } from 'backapi';
 let read;
 let write;
-let handler: Handler;
-let dbHandler: DatabaseHandler;
+let handler;
+let dbHandler;
 let journaly;
 describe('1', () => {
   beforeEach(async () => {
@@ -185,7 +185,7 @@ describe('1', () => {
 
     const deletedTest = deleted['received'].object;
     // console.log('deletedTest:', deletedTest);
-    const expectedDeletedTest = [];
+    const expectedDeletedTest = true;
     // console.log('expectedDeletedTest:', expectedDeletedTest);
     expect(deletedTest).toStrictEqual(expectedDeletedTest);
 
