@@ -52,7 +52,7 @@
     "flatted": "latest",
     "flexiblepersistence": "latest",
     "journaly": "latest",
-    "ts-mixer": "latest"
+    "ts-mixer": "6.0.1"
   },
   "devDependencies": {
     "@flexiblepersistence/sequelize": "latest",
