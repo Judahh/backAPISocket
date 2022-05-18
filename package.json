@@ -47,7 +47,7 @@
   "dependencies": {
     "@flexiblepersistence/default-initializer": "latest",
     "@flexiblepersistence/service": "latest",
-    "pg": "latest",
+    "pg": "8.7.3",
     "backapi": "latest",
     "flatted": "latest",
     "flexiblepersistence": "latest",
