@@ -1,9 +1,15 @@
 import { Operation } from 'flexiblepersistence';
 import { AbstractControllerDefault } from 'backapi';
-import { inspect } from 'util';
 
 export default class BaseControllerDefault extends AbstractControllerDefault {
-  protected emit(responseOrSocket?, operation?: Operation, status?, object?) {
+  protected emit(
+    _requestOrData?,
+    responseOrSocket?,
+    _headers?,
+    operation?: Operation,
+    status?,
+    object?
+  ) {
     const returnName =
       this.formatName().charAt(0).toLowerCase() +
       this.formatName().slice(1) +
