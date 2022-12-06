@@ -2,6 +2,11 @@ import { Operation } from 'flexiblepersistence';
 import { AbstractControllerDefault } from 'backapi';
 
 export default class BaseControllerDefault extends AbstractControllerDefault {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  protected abstract socketFramework;
+  protected restFramework = undefined;
+  protected communication = 'socket';
   protected emit(
     _requestOrData?,
     responseOrSocket?,
