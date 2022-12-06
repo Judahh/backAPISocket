@@ -1,9 +1,20 @@
 import { Operation } from 'flexiblepersistence';
 import { AbstractControllerDefault } from 'backapi';
-import { inspect } from 'util';
 
 export default class BaseControllerDefault extends AbstractControllerDefault {
-  protected emit(responseOrSocket?, operation?: Operation, status?, object?) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  protected abstract socketFramework;
+  protected restFramework = undefined;
+  protected communication = 'socket';
+  protected emit(
+    _requestOrData?,
+    responseOrSocket?,
+    _headers?,
+    operation?: Operation,
+    status?,
+    object?
+  ) {
     const returnName =
       this.formatName().charAt(0).toLowerCase() +
       this.formatName().slice(1) +
